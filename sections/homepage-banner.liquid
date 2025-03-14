@@ -1,0 +1,64 @@
+<section class="banner-2 section-padding pb-0">
+    <div class="container">
+        <div class="banner-img banner-big wow fadeIn animated f-none">
+            {% if section.settings.banner_image != blank %}
+                <img src="{{ section.settings.banner_image | img_url: 'master' }}" alt="Banner Image">
+            {% else %}
+                <img src="{{ 'banner-4.png' | img_url }}" alt="Banner Image">
+            {% endif %}
+            <div class="banner-text d-md-block d-none">
+                <h4 class="mb-15 mt-40 text-brand">{{ section.settings.header_text }}</h4>
+                <h1 class="fw-600 mb-20">{{ section.settings.main_text_1 }} <br>{{ section.settings.main_text_2 }}</h1>
+                <a href="{{ section.settings.url_button }}" class="btn">{{ section.settings.button_text }} <i class="fi-rs-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "header_text",
+      "label": "Header Text",
+      "default": "Header Text"
+    },
+    {
+      "type": "text",
+      "id": "main_text_1",
+      "label": "Main Text Up",
+      "default": "Main Text Up"
+    },
+    {
+      "type": "text",
+      "id": "main_text_2",
+      "label": "Main Text Down",
+      "default": "Main Text Down"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "url_button",
+      "label": "Link Button",
+      "default": "/"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Banner"
+    }
+  ]
+}
+{% endschema %}

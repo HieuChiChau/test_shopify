@@ -1,0 +1,88 @@
+<section class="section-padding">
+  <div class="container">
+    <h3 class="section-title mb-20 wow fadeIn animated">
+      <span>{{ section.settings.title_highlight }}</span> {{ section.settings.title }}
+    </h3>
+    <div class="carausel-6-columns-cover position-relative wow fadeIn animated">
+      <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-3-arrows"></div>
+      <div class="carausel-6-columns text-center" id="carausel-6-columns-3">
+        {% for block in section.blocks %}
+          <div class="brand-logo" {{ block.shopify_attributes }}>
+            {% if block.settings.brand_url != blank %}
+              <a href="{{ block.settings.brand_url }}">
+            {% endif %}
+            <img
+              class="img-grey-hover"
+              src="{{ block.settings.brand_image | img_url: 'medium' }}"
+              alt="{{ block.settings.brand_image.alt | escape }}"
+              loading="lazy"
+            >
+            {% if block.settings.brand_url != blank %}
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Brands Logos",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_highlight",
+      "label": "Title Highlight",
+      "default": "Featured"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Brands"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "brand_image",
+          "label": "Brand Image"
+        },
+        {
+          "type": "url",
+          "id": "brand_url",
+          "label": "Brand URL",
+          "info": "Optional"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Logos",
+      "blocks": [
+        {
+          "type": "brand"
+        },
+        {
+          "type": "brand"
+        },
+        {
+          "type": "brand"
+        },
+        {
+          "type": "brand"
+        },
+        {
+          "type": "brand"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

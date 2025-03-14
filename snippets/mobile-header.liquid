@@ -1,0 +1,108 @@
+<div class="mobile-header-wrapper-inner">
+  <div class="mobile-header-top">
+    <div class="mobile-header-logo">
+      <a href="{{ routes.root_url }}"><img src="{{ settings.logo | img_url }}" alt="{{ shop.name }}"></a>
+    </div>
+    <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
+      <button class="close-style search-close">
+        <i class="icon-top"></i>
+        <i class="icon-bottom"></i>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-header-content-area">
+    <div class="mobile-search search-style-3 mobile-header-border">
+      <form action="{{ routes.search_url }}" method="get">
+        <input type="text" name="q" placeholder="{{ 'general.search.placeholder' | t }}">
+        <button type="submit"><i class="fi-rs-search"></i></button>
+      </form>
+    </div>
+    <div class="mobile-menu-wrap mobile-header-border">
+      <!-- mobile menu start -->
+      <nav>
+        <ul class="mobile-menu">
+          {% for link in linklists[section.settings.menu].links %}
+            {% if link.links != blank %}
+              <li class="menu-item-has-children">
+                <span class="menu-expand"></span>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+                <ul class="dropdown">
+                  {% for sub_link in link.links %}
+                    <li
+                      {% if sub_link.links != blank %}
+                        class="menu-item-has-children"
+                      {% endif %}
+                    >
+                      {% if sub_link.links != blank %}<span class="menu-expand"></span>{% endif %}
+                      <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                      {% if sub_link.links != blank %}
+                        <ul class="dropdown">
+                          {% for child_link in sub_link.links %}
+                            <li>
+                              <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% else %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+      <!-- mobile menu end -->
+    </div>
+    <div class="mobile-header-info-wrap mobile-header-border">
+      {% if shop.customer_accounts_enabled %}
+        <div class="single-mobile-header-info">
+          {% if customer %}
+            <a href="{{ routes.account_url }}">{{ 'customer.account.title' | t }}</a>
+          {% else %}
+            <a href="{{ routes.account_login_url }}">{{ 'customer.login.title' | t }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if settings.phone_number != blank %}
+        <div class="single-mobile-header-info">
+          <a href="tel:{{ settings.phone_number }}">{{ settings.phone_number }}</a>
+        </div>
+      {% endif %}
+    </div>
+    {% if settings.social_enable %}
+      <div class="mobile-social-icon">
+        <h5 class="mb-15 text-grey-4">{{ 'general.social.follow_us' | t }}</h5>
+        {% if settings.social_facebook_link != blank %}
+          <a href="{{ settings.social_facebook_link }}"
+            ><img src="{{ 'icon-facebook.svg' | asset_url }}" alt="Facebook"
+          ></a>
+        {% endif %}
+        {% if settings.social_twitter_link != blank %}
+          <a href="{{ settings.social_twitter_link }}"
+            ><img src="{{ 'icon-twitter.svg' | asset_url }}" alt="Twitter"
+          ></a>
+        {% endif %}
+        {% if settings.social_instagram_link != blank %}
+          <a href="{{ settings.social_instagram_link }}"
+            ><img src="{{ 'icon-instagram.svg' | asset_url }}" alt="Instagram"
+          ></a>
+        {% endif %}
+        {% if settings.social_pinterest_link != blank %}
+          <a href="{{ settings.social_pinterest_link }}"
+            ><img src="{{ 'icon-pinterest.svg' | asset_url }}" alt="Pinterest"
+          ></a>
+        {% endif %}
+        {% if settings.social_youtube_link != blank %}
+          <a href="{{ settings.social_youtube_link }}"
+            ><img src="{{ 'icon-youtube.svg' | asset_url }}" alt="Youtube"
+          ></a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>

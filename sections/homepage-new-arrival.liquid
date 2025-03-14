@@ -1,0 +1,130 @@
+<section class="section-padding">
+  <div class="container wow fadeIn animated">
+    <h3 class="section-title mb-20">
+      <span>{{ section.settings.title_highlight }}</span> {{ section.settings.title }}
+    </h3>
+    <div class="carausel-6-columns-cover position-relative">
+      <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-2-arrows"></div>
+      <div class="carausel-6-columns carausel-arrow-center" id="carausel-6-columns-2">
+        {%- for product in collections[section.settings.collection].products
+          limit: section.settings.number_of_products
+        -%}
+          <div class="product-cart-wrap small hover-up">
+            <div class="product-img-action-wrap">
+              <div class="product-img product-img-zoom">
+                <a href="{{ product.url }}">
+                  <img
+                    class="default-img"
+                    src="{{ product.featured_image | img_url: 'medium' }}"
+                    alt="{{ product.featured_image.alt | escape }}"
+                  >
+                  {% if product.images[1] %}
+                    <img
+                      class="hover-img"
+                      src="{{ product.images[1] | img_url: 'medium' }}"
+                      alt="{{ product.images[1].alt | escape }}"
+                    >
+                  {% endif %}
+                </a>
+              </div>
+              <div class="product-action-1">
+                <a
+                  aria-label="Quick view"
+                  class="action-btn small hover-up"
+                  data-bs-toggle="modal"
+                  data-bs-target="#quickViewModal"
+                >
+                  <i class="fi-rs-eye"></i
+                ></a>
+                <a
+                  aria-label="Add To Wishlist"
+                  class="action-btn small hover-up"
+                  href="#"
+                  tabindex="0"
+                  ><i class="fi-rs-heart"></i
+                ></a>
+                <a aria-label="Compare" class="action-btn small hover-up" href="#" tabindex="0"
+                  ><i
+                    class="fi-rs-shuffle"
+                  ></i
+                ></a>
+              </div>
+              {% if product.compare_at_price > product.price %}
+                <div class="product-badges product-badges-position product-badges-mrg">
+                  <span class="hot"
+                    >-
+                    {{-
+                      product.compare_at_price
+                      | minus: product.price
+                      | times: 100.0
+                      | divided_by: product.compare_at_price
+                      | round
+                    -}}
+                    %</span
+                  >
+                </div>
+              {% else %}
+                <div class="product-badges product-badges-position product-badges-mrg">
+                  <span class="new">New</span>
+                </div>
+              {% endif %}
+            </div>
+            <div class="product-content-wrap">
+              <h2>
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              </h2>
+              <div class="rating-result" title="90%">
+                <span></span>
+              </div>
+              <div class="product-price">
+                <span>{{ product.price | money }}</span>
+                {% if product.compare_at_price > product.price %}
+                  <span class="old-price">{{ product.compare_at_price | money }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Arrivals",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_highlight",
+      "label": "Title Highlight",
+      "default": "New"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Arrivals"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "number_of_products",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "label": "Number of products to show",
+      "default": 7
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Arrivals Slider",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

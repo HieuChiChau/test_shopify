@@ -1,0 +1,120 @@
+<div class="shop-product-fillter">
+  <div class="totall-product">
+    <p>
+      We found <strong class="text-brand">{{ collection.products_count }}</strong> items for you!
+    </p>
+  </div>
+  <div class="sort-by-product-area">
+    <div class="sort-by-cover mr-10">
+      <div class="sort-by-product-wrap">
+        <div class="sort-by">
+          <span><i class="fi-rs-apps"></i>Show:</span>
+        </div>
+        <div class="sort-by-dropdown-wrap">
+          <span>
+            {{ collection.products_per_page }}
+            <i class="fi-rs-angle-small-down"></i
+          ></span>
+        </div>
+      </div>
+      <div class="sort-by-dropdown">
+        <ul>
+          {% assign page_sizes = '24,48,72,96' | split: ',' %}
+          {% for size in page_sizes %}
+            <li>
+              <a
+                href="{{ collection.url }}?sort_by={{ collection.sort_by }}&page_size={{ size }}"
+                {% if collection.products_per_page == size %}
+                  class="active"
+                {% endif %}
+              >
+                {{ size }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="sort-by-cover">
+      <div class="sort-by-product-wrap">
+        <div class="sort-by">
+          <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
+        </div>
+        <div class="sort-by-dropdown-wrap">
+          <span>
+            {% case collection.sort_by %}
+              {% when 'manual' -%}
+                Featured
+              {% when 'best-selling' -%}
+                Best Selling
+              {% when 'title-ascending' -%}
+                Alphabetically, A-Z
+              {% when 'title-descending' -%}
+                Alphabetically, Z-A
+              {% when 'price-ascending' -%}
+                Price: Low to High
+              {% when 'price-descending' -%}
+                Price: High to Low
+              {% when 'created-ascending' -%}
+                Date, Old to New
+              {% when 'created-descending' -%}
+                Date, New to Old
+              {% else -%}
+                Featured
+            {% endcase %}
+            <i class="fi-rs-angle-small-down"></i>
+          </span>
+        </div>
+      </div>
+      <div class="sort-by-dropdown">
+        <ul>
+          <li>
+            <a
+              href="{{ collection.url }}?sort_by=manual&page_size={{ collection.products_per_page }}"
+              {% if collection.sort_by == 'manual' %}
+                class="active"
+              {% endif %}
+              >Featured</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ collection.url }}?sort_by=price-ascending&page_size={{ collection.products_per_page }}"
+              {% if collection.sort_by == 'price-ascending' %}
+                class="active"
+              {% endif %}
+              >Price: Low to High</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ collection.url }}?sort_by=price-descending&page_size={{ collection.products_per_page }}"
+              {% if collection.sort_by == 'price-descending' %}
+                class="active"
+              {% endif %}
+              >Price: High to Low</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ collection.url }}?sort_by=created-descending&page_size={{ collection.products_per_page }}"
+              {% if collection.sort_by == 'created-descending' %}
+                class="active"
+              {% endif %}
+              >Release Date</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ collection.url }}?sort_by=best-selling&page_size={{ collection.products_per_page }}"
+              {% if collection.sort_by == 'best-selling' %}
+                class="active"
+              {% endif %}
+              >Best Selling</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+{% assign tab_names = "one,two,three,four,five,six,seven,eight,nine" | split: "," %}
+
+<section class="product-tabs section-padding position-relative wow fadeIn animated">
+    <div class="bg-square"></div>
+    <div class="container">
+        <div class="tab-header">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                {% for block in section.blocks %}
+                    {% assign tab_id = tab_names[forloop.index0] | default: block.id %}
+                    <li class="nav-item" role="presentation">
+                        <button
+                                class="nav-link {% if forloop.first %}active{% endif %}"
+                                id="nav-tab-{{ tab_id }}"
+                                data-bs-toggle="tab"
+                                data-bs-target="#tab-{{ tab_id }}"
+                                type="button"
+                                role="tab"
+                                aria-controls="tab-{{ tab_id }}"
+                                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                            {{ block.settings.tab_title }}
+                        </button>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="#" class="view-more d-none d-md-flex">{{ section.settings.text_right }}<i class="fi-rs-angle-double-small-right"></i></a>
+        </div>
+
+        <div class="tab-content wow fadeIn animated" id="myTabContent">
+            {% for block in section.blocks %}
+                {% assign tab_id = tab_names[forloop.index0] | default: block.id %}
+                <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="tab-{{ tab_id }}" role="tabpanel" aria-labelledby="tab-{{ tab_id }}">
+                    <div class="row product-grid-4">
+                        {% for product in block.settings.products %}
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
+                                <div class="product-cart-wrap mb-30">
+                                    <div class="product-img-action-wrap">
+                                        <div class="product-img product-img-zoom">
+                                            <a href="{{ product.url }}">
+                                                <img class="default-img" src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+                                                <img class="hover-img" src="{{ product.images[1] | img_url: 'medium' }}" alt="{{ product.title }}">
+                                            </a>
+                                        </div>
+                                        <div class="product-action-1">
+                                            <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="#"><i class="fi-rs-heart"></i></a>
+                                            <a aria-label="Compare" class="action-btn hover-up" href="#"><i class="fi-rs-shuffle"></i></a>
+                                        </div>
+                                        {% assign first_variant = product.variants.first %}
+                                        {% assign badges = first_variant.option1 | split: "," %}
+                                        <div class="product-badges product-badges-position product-badges-mrg">
+                                            {% for badge in badges %}
+                                                <span class="{{ badge | downcase | replace: ' ', '-' }}">{{ badge }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="product-content-wrap">
+                                        <div class="product-category">
+                                            <a href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>
+                                        </div>
+                                        <h2><a href="{{ product.url }}">{{ product.title }}</a></h2>
+                                        <div class="rating-result" title="90%">
+                                            <span>
+                                                <span>90%</span>
+                                            </span>
+                                        </div>
+                                        <div class="product-price">
+                                            <span>{{ product.price | money }}</span>
+                                            {% if product.compare_at_price > product.price %}
+                                                <span class="old-price">{{ product.compare_at_price | money }}</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="product-action-1 show">
+                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="/cart/add?id={{ product.variants.first.id }}"><i class="fi-rs-shopping-bag-add"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tab Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text_right",
+      "label": "View More Text",
+      "default": "View More"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "New Tab"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Products"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tab Products"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,221 @@
+<footer class="main">
+  <section class="newsletter p-30 text-white wow fadeIn animated">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7 mb-md-3 mb-lg-0">
+          <div class="row align-items-center">
+            <div class="col flex-horizontal-center">
+              <img class="icon-email" src="{{ 'icon-email.svg' | asset_url }}" alt="">
+              <h4 class="font-size-20 mb-0 ml-3">{{ section.settings.newsletter_title }}</h4>
+            </div>
+            <div class="col my-4 my-md-0 des">
+              <h5 class="font-size-15 ml-4 mb-0">{{ section.settings.newsletter_subtitle }}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <!-- Subscribe Form -->
+          <form class="form-subcriber d-flex wow fadeIn animated">
+            <input type="email" class="form-control bg-white font-small" placeholder="Enter your email">
+            <button class="btn bg-dark text-white" type="submit">{{ section.settings.subscribe_button }}</button>
+          </form>
+          <!-- End Subscribe Form -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-padding footer-mid">
+    <div class="container pt-15 pb-20">
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="widget-about font-md mb-md-5 mb-lg-0">
+            <div class="logo logo-width-1 wow fadeIn animated">
+              <a href="{{ shop.url }}">
+                {% if section.settings.logo != blank %}
+                  <img src="{{ section.settings.logo | img_url }}" alt="logo">
+                {% else %}
+                  <img src="{{ 'logo.png' | asset_url }}" alt="logo">
+                {% endif %}
+              </a>
+            </div>
+            <h5 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Contact</h5>
+            <p class="wow fadeIn animated"><strong>Address: </strong>{{ section.settings.address }}</p>
+            <p class="wow fadeIn animated"><strong>Phone: </strong>{{ section.settings.phone }}</p>
+            <p class="wow fadeIn animated"><strong>Email: </strong>{{ section.settings.email }}</p>
+            <h5 class="mb-10 mt-30 fw-600 text-grey-4 wow fadeIn animated">Follow Us</h5>
+            <div class="mobile-social-icon wow fadeIn animated mb-sm-5 mb-md-0">
+              <a href="{{ section.settings.facebook_link }}"><img src="{{  'icon-facebook.svg' | asset_url }}" alt=""></a>
+              <a href="{{ section.settings.twitter_link }}"><img src="{{ 'icon-twitter.svg' | asset_url }}" alt=""></a>
+              <a href="{{ section.settings.instagram_link }}"><img src="{{ 'icon-instagram.svg' |  asset_url }}" alt=""></a>
+              <a href="{{ section.settings.pinterest_link }}"><img src="{{ 'icon-pinterest.svg' |  asset_url }}" alt=""></a>
+              <a href="{{ section.settings.youtube_link }}"><img src="{{ 'icon-youtube.svg' |  asset_url }}" alt=""></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3">
+          <h5 class="widget-title wow fadeIn animated">About</h5>
+          <ul class="footer-list wow fadeIn animated mb-sm-5 mb-md-0">
+            {% for link in section.settings.about_menu.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="col-lg-2  col-md-3">
+          <h5 class="widget-title wow fadeIn animated">My Account</h5>
+          <ul class="footer-list wow fadeIn animated">
+            {% for link in section.settings.account_menu.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="col-lg-4 mob-center">
+          <h5 class="widget-title wow fadeIn animated">Install App</h5>
+          <div class="row">
+            <div class="col-md-8 col-lg-12">
+              <p class="wow fadeIn animated">From App Store or Google Play</p>
+              <div class="download-app wow fadeIn animated mob-app">
+                <a href="{{ section.settings.app_store_link }}" class="hover-up mb-sm-4 mb-lg-0"
+                  ><img class="active" src="{{ 'app-store.jpg' |  asset_url }}" alt=""
+                ></a>
+                <a href="{{ section.settings.google_play_link }}" class="hover-up"><img src="{{ 'google-play.jpg' |  asset_url }}" alt=""></a>
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-12 mt-md-3 mt-lg-0">
+              <p class="mb-20 wow fadeIn animated">Secured Payment Gateways</p>
+              <img class="wow fadeIn animated" src="{{ 'payment-method.png' |  asset_url }}" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container pb-20 wow fadeIn animated mob-center">
+    <div class="row">
+      <div class="col-12 mb-20">
+        <div class="footer-bottom"></div>
+      </div>
+      <div class="col-lg-6">
+        <p class="float-md-left font-sm text-muted mb-0">
+          <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <p class="text-lg-end text-start font-sm text-muted mb-0">
+          &copy; <strong class="text-brand">{{ section.settings.copyright }}</strong> All rights reserved
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "newsletter_title",
+      "label": "Newsletter Title",
+      "default": "Sign up to Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_subtitle",
+      "label": "Newsletter Subtitle",
+      "default": "...and receive $25 coupon for first shopping."
+    },
+    {
+      "type": "text",
+      "id": "subscribe_button",
+      "label": "Subscribe Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Address",
+      "default": "562 Wellington Road"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "+1 0000-000-000"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "contact@yourstore.com"
+    },
+    {
+      "type": "url",
+      "id": "facebook_link",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "twitter_link",
+      "label": "Twitter URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_link",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "pinterest_link",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_link",
+      "label": "Youtube URL"
+    },
+    {
+      "type": "link_list",
+      "id": "about_menu",
+      "label": "About Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "account_menu",
+      "label": "Account Menu"
+    },
+    {
+      "type": "text",
+      "id": "app_text",
+      "label": "App Download Text",
+      "default": "From App Store or Google Play"
+    },
+    {
+      "type": "url",
+      "id": "app_store_link",
+      "label": "App Store Link"
+    },
+    {
+      "type": "url",
+      "id": "google_play_link",
+      "label": "Google Play Link"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright Text",
+      "default": "Your Store Name"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "category": "Footer"
+    }
+  ]
+}
+{% endschema %}

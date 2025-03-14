@@ -1,0 +1,72 @@
+<section class="popular-categories section-padding mt-15 mb-25">
+    <div class="container wow fadeIn animated">
+        <h3 class="section-title mb-20"><span>{{ section.settings.highlight_text }}</span> {{ section.settings.normal_text }}</h3>
+        <div class="carausel-6-columns-cover position-relative">
+            <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-arrows"></div>
+            <div class="carausel-6-columns" id="carausel-6-columns">
+                {% for block in section.blocks %}
+                    {% assign collection = collections[block.settings.collection_handle] %}
+                    {% if collection != blank %}
+                        <div class="card-1">
+                            <figure class="img-hover-scale overflow-hidden">
+                                <a href="{{ collection.url }}">
+                                    <img src="{{ collection.image | img_url: 'medium' }}" alt="{{ collection.title }}">
+                                </a>
+                            </figure>
+                            <h5><a href="{{ collection.url }}">{{ collection.title }}</a></h5>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "highlight_text",
+      "label": "First Text",
+      "default": "Popular"
+    },
+    {
+      "type": "text",
+      "id": "normal_text",
+      "label": "Second Text",
+      "default": "Categories"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection_handle",
+          "label": "Select Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category",
+      "blocks": [
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

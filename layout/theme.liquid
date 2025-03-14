@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {{ 'normalize.css' | asset_url | stylesheet_tag }}
+    {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+
+    {{ 'jquery-ui.css' | asset_url | stylesheet_tag }}
+    {{ 'magnific-popup.css' | asset_url | stylesheet_tag }}
+    {{ 'perfect-scrollbar.css' | asset_url | stylesheet_tag }}
+    {{ 'select2.min.css' | asset_url | stylesheet_tag }}
+    {{ 'slick.css' | asset_url | stylesheet_tag }}
+    {{ 'uicons-regular-straight.css' | asset_url | stylesheet_tag }}
+
+    {{ 'main.css' | asset_url | stylesheet_tag }}
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    <header>
+      {% section 'header' %}
+    </header>
+
+    <main class="main">
+      {{ content_for_layout }}
+    </main>
+
+    <footer>
+      {% section 'footer' %}
+    </footer>
+
+    {{ 'jquery-3.6.0.min.js' | asset_url | script_tag }}
+    {{ 'jquery-migrate-3.3.0.min.js' | asset_url | script_tag }}
+    {{ 'jquery.countdown.min.js' | asset_url | script_tag }}
+    {{ 'jquery.elevatezoom.js' | asset_url | script_tag }}
+    {{ 'jquery.syotimer.min.js' | asset_url | script_tag }}
+    {{ 'jquery.theia.sticky.js' | asset_url | script_tag }}
+    {{ 'jquery.vticker-min.js' | asset_url | script_tag }}
+    {{ 'jquery-ui.js' | asset_url | script_tag }}
+
+    {{ 'isotope.js' | asset_url | script_tag }}
+
+    {{ 'bootstrap.bundle.min.js' | asset_url | script_tag }}
+    {{ 'counterup.js' | asset_url | script_tag }}
+    {{ 'images-loaded.js' | asset_url | script_tag }}
+
+    {{ 'slick.js' | asset_url | script_tag }}
+    {{ 'select2.min.js' | asset_url | script_tag }}
+    {{ 'wow.js' | asset_url | script_tag }}
+    {{ 'perfect-scrollbar.js' | asset_url | script_tag }}
+    {{ 'scrollup.js' | asset_url | script_tag }}
+    {{ 'magnific-popup.js' | asset_url | script_tag }}
+    {{ 'modernizr-3.6.0.min.js' | asset_url | script_tag }}
+    {{ 'shop.js' | asset_url | script_tag }}
+    {{ 'waypoints.js' | asset_url | script_tag }}
+    {{ 'main.js' | asset_url | script_tag }}
+  </body>
+</html>

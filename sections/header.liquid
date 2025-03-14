@@ -1,0 +1,195 @@
+<header class="header-area header-style-1 header-height-2">
+  {% render 'header-top', settings: section.settings, section: section %}
+  {% render 'header-middle', settings: section.settings, section: section %}
+  {% render 'header-bottom', settings: section.settings, section: section %}
+</header>
+<div class="mobile-header-active mobile-header-wrapper-style">
+  {% render 'mobile-header', settings: section.settings, section: section %}
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    // Top Settings
+    {
+      "type": "header",
+      "content": "Header Top Settings"
+    },
+    {
+      "type": "text",
+      "id": "default_language",
+      "label": "Default Language",
+      "default": "English"
+    },
+    {
+      "type": "text",
+      "id": "auth_login_text",
+      "label": "Login Text",
+      "default": "Log In"
+    },
+    {
+      "type": "text",
+      "id": "auth_signup_text",
+      "label": "Sign Up Text",
+      "default": "Sign Up"
+    },
+    // Middle Settings
+    {
+      "type": "header",
+      "content": "Header Middle Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    // Bottom Settings
+    {
+      "type": "header",
+      "content": "Header Bottom Settings"
+    },
+    {
+      "type": "text",
+      "id": "left_text",
+      "label": "Left Section Text",
+      "default": "Browse Categories"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "mega_menu_image",
+      "label": "Mega Menu Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "mega_menu_subtitle",
+      "label": "Banner Subtitle",
+      "default": "Hot deals"
+    },
+    {
+      "type": "text",
+      "id": "mega_menu_title",
+      "label": "Banner Title",
+      "default": "Don't miss<br> Trending"
+    },
+    {
+      "type": "text",
+      "id": "mega_menu_discount_text",
+      "label": "Discount Text",
+      "default": "Save up to 50%"
+    },
+    {
+      "type": "text",
+      "id": "mega_menu_button_text",
+      "label": "Button Text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "mega_menu_button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "mega_menu_discount_percent",
+      "label": "Discount Percentage",
+      "default": "35%"
+    },
+    {
+      "type": "text",
+      "id": "right_text",
+      "label": "Right Section Text",
+      "default": "Toll Free (+1) 0000-000-000"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "language",
+      "name": "Language",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "flag",
+          "label": "Flag Icon"
+        },
+        {
+          "type": "text",
+          "id": "language_name",
+          "label": "Language Name",
+          "default": "Français"
+        }
+      ]
+    },
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "announcement_text",
+          "label": "Announcement Text",
+          "default": "Get great devices up to"
+        },
+        {
+          "type": "url",
+          "id": "announcement_link",
+          "label": "Announcement Link",
+          "default": "/"
+        },
+        {
+          "type": "text",
+          "id": "announcement_highlight_text",
+          "label": "Announcement Highlight Text",
+          "default": "50% off"
+        }
+      ]
+    },
+    {
+      "type": "menu_item",
+      "name": "Menu Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "Menu Title"
+        },
+        {
+          "type": "url",
+          "id": "menu_link",
+          "label": "Menu Link"
+        },
+        {
+          "type": "select",
+          "id": "menu_type",
+          "label": "Menu Type",
+          "options": [
+            { "value": "simple", "label": "Simple Menu" },
+            { "value": "dropdown", "label": "Dropdown Menu" },
+            { "value": "mega", "label": "Mega Menu" }
+          ]
+        },
+        {
+          "type": "link_list",
+          "id": "dropdown_links",
+          "label": "Dropdown Links",
+          "info": "For dropdown & mega menu"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Header",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}

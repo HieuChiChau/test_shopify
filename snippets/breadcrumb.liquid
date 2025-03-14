@@ -1,0 +1,30 @@
+<div class="page-header breadcrumb-wrap">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="{{ routes.root_url }}" rel="nofollow">Home</a>
+      {% if template contains 'collection' %}
+        <span></span>
+        {{ collection.title }}
+      {% elsif template contains 'product' %}
+        <span></span>
+        <a href="{{ collection.url }}">{{ collection.title }}</a>
+        <span></span>
+        {{ product.title }}
+      {% elsif template contains 'page' %}
+        <span></span>
+        {{ page.title }}
+      {% elsif template contains 'cart' %}
+        <span></span>
+        {{ 'cart.general.title' | t }}
+      {% elsif template contains 'blog' %}
+        <span></span>
+        {{ blog.title }}
+      {% elsif template contains 'article' %}
+        <span></span>
+        <a href="{{ blog.url }}">{{ blog.title }}</a>
+        <span></span>
+        {{ article.title }}
+      {% endif %}
+    </div>
+  </div>
+</div>

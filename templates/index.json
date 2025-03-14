@@ -1,0 +1,55 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "homepage-slider": {
+      "type": "homepage-slider",
+      "settings": {}
+    },
+    "homepage-featured": {
+      "type": "homepage-featured",
+      "settings": {}
+    },
+    "homepage-tab-products": {
+      "type": "homepage-tab-products",
+      "settings": {}
+    },
+    "homepage-banner": {
+      "type": "homepage-banner",
+      "settings": {}
+    },
+    "homepage-categories": {
+      "type": "homepage-categories",
+      "settings": {}
+    },
+    "homepage-multi-banners": {
+      "type": "homepage-multi-banners",
+      "settings": {}
+    },
+    "homepage-new-arrival": {
+      "type": "homepage-new-arrival",
+      "settings": {}
+    },
+    "homepage-brands": {
+      "type": "homepage-brands",
+      "settings": {}
+    }
+  },
+  "order": [
+    "homepage-slider",
+    "homepage-featured",
+    "homepage-tab-products",
+    "homepage-banner",
+    "homepage-categories",
+    "homepage-multi-banners",
+    "homepage-new-arrival",
+    "homepage-brands"
+  ]
+}

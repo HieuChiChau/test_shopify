@@ -1,0 +1,67 @@
+<section class="banners mb-15">
+    <div class="container">
+        <div class="row">
+            {% for block in section.blocks %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="banner-img wow fadeIn animated">
+                        <img src="{{ block.settings.banner_image | img_url: 'large' }}" alt="">
+                        <div class="banner-text">
+                            <span>{{ block.settings.title }}</span>
+                            <h4>{{ block.settings.content }}</h4>
+                            <a href="{{ block.settings.btn_link }}">{{ block.settings.btn_tittle }} <i class="fi-rs-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Multi Banners",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Multi Banners",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Image Banner"
+        },
+        {
+          "type": "text",
+          "id": "tittle",
+          "label": "Title",
+          "default": "Sale Off"
+        },
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Content",
+          "default": "Great Summer Collection"
+        },
+        {
+          "type": "text",
+          "id": "btn_tittle",
+          "label": "Button Title",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link",
+          "default": "/"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Multi Banners"
+    }
+  ]
+}
+{% endschema %}

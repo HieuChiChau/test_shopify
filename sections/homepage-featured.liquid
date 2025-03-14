@@ -1,0 +1,58 @@
+<section class="featured section-padding position-relative">
+    <div class="container">
+        <div class="row">
+            {% for block in section.blocks %}
+                <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+                    <div class="banner-features wow fadeIn animated hover-up">
+                        <img src="{{ block.settings.image | img_url: 'small' }}" alt="">
+                        <h4 class="{{ block.settings.bg_class }}">{{ block.settings.title }}</h4>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Featured",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Feature Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Free Shipping" },
+        {
+          "type": "select",
+          "id": "bg_class",
+          "label": "Background Class",
+          "options": [
+            { "value": "bg-1", "label": "Light Pink (#fddde4)" },
+            { "value": "bg-2", "label": "Light Green (#cdebbc)" },
+            { "value": "bg-3", "label": "Light Blue (#d1e8f2)" },
+            { "value": "bg-4", "label": "Light Purple (#cdd4f8)" },
+            { "value": "bg-5", "label": "Light Magenta (#f6dbf6)" },
+            { "value": "bg-6", "label": "Light Orange (#fff2e5)" }
+          ],
+          "default": "bg-1"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Featured",
+      "blocks": [
+        { "type": "feature", "settings": { "title": "Free Shipping", "bg_class": "bg-1" } },
+        { "type": "feature", "settings": { "title": "Online Order", "bg_class": "bg-3" } },
+        { "type": "feature", "settings": { "title": "Save Money", "bg_class": "bg-2" } },
+        { "type": "feature", "settings": { "title": "Promotions", "bg_class": "bg-4" } },
+        { "type": "feature", "settings": { "title": "Happy Sell", "bg_class": "bg-5" } },
+        { "type": "feature", "settings": { "title": "24/7 Support", "bg_class": "bg-6" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
